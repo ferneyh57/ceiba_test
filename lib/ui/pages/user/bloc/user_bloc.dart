@@ -14,7 +14,7 @@ class UserBloc extends Cubit<UserBlocUiState> {
     required this.userRepository,
   }) : super(const UserBlocUiState());
 
-  onInit() async {
+  void onInit() async {
     emit(state.copyWith(isLoading: true));
     final localUsers = hiveManager.getMany<UserModel>(USER_BOX);
     if (localUsers?.isNotEmpty == true) {

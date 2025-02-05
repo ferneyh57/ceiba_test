@@ -1,7 +1,9 @@
 
-class PostQuery {
+import 'package:equatable/equatable.dart';
+
+class PostQuery extends Equatable{
   final int? userId;
-  PostQuery({this.userId});
+  const PostQuery({this.userId});
   
   Map<String, dynamic> toJson() {
     if (userId == null) return {};
@@ -9,4 +11,7 @@ class PostQuery {
       'userId': userId,
     };
   }
+  
+  @override
+  List<Object?> get props => [userId];
 }

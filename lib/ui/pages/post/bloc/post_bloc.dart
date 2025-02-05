@@ -14,16 +14,16 @@ class PostBloc extends Cubit<PostBlocUiState> {
   PostBloc({
     required this.hiveManager,
     required this.postRepository,
-  }) : super(PostBlocUiState());
+  }) : super(const PostBlocUiState());
 
-  onInit(UserModel currentUser) async {
+  void onInit(UserModel currentUser) async {
     emit(state.copyWith(isLoading: true, currentUser: currentUser));
     final localPost = hiveManager.getMany<PostModel>(POST_BOX);
     if (localPost?.isNotEmpty == true) {
       emit(state.copyWith(posts: localPost, isLoading: false));
       return;
     }
-    final remotePost = await postRepository.getPosts(PostQuery());
+    final remotePost = await postRepository.getPosts(const PostQuery());
     hiveManager.save(POST_BOX, remotePost);
     emit(state.copyWith(posts: remotePost, isLoading: false));
   }
