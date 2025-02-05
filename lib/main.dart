@@ -1,13 +1,9 @@
-import 'package:ceiba_app/domain/model/post/post_model.dart';
-import 'package:ceiba_app/domain/model/user/user_model.dart';
+import 'package:ceiba_app/ui/config/di.dart';
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
-Future<void> main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  await Hive.initFlutter();
-  Hive.registerAdapter(UserModelAdapter());
-  Hive.registerAdapter(PostModelAdapter());
+  setupLocator();
   runApp(const MyApp());
 }
 
