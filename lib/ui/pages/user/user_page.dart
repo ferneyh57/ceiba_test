@@ -1,5 +1,6 @@
 import 'package:ceiba_app/ui/pages/user/bloc/user_bloc.dart';
 import 'package:ceiba_app/ui/pages/user/widgets/user_page_element.dart';
+import 'package:ceiba_app/ui/utils/debouncer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,11 +12,13 @@ class UserPage extends StatefulWidget {
 }
 
 class _UserPageState extends State<UserPage> {
+  final Debouncer _debouncer = Debouncer(milliseconds: 500);
   @override
   void initState() {
-   context.read<UserBloc>().onInit();
+    context.read<UserBloc>().onInit();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +38,9 @@ class _UserPageState extends State<UserPage> {
               children: [
                 TextField(
                   onChanged: (value) {
-                    userBloc.onSearch(value);
+                    _debouncer.run(() {
+                      userBloc.onSearch(value);
+                    });
                   },
                 ),
                 const SizedBox(height: 24),
