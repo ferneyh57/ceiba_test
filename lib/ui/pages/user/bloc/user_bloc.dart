@@ -12,9 +12,7 @@ class UserBloc extends Cubit<UserBlocUiState> {
   UserBloc({
     required this.hiveManager,
     required this.userRepository,
-  }) : super(const UserBlocUiState()) {
-  //  onInit();
-  }
+  }) : super(const UserBlocUiState());
 
   onInit() async {
     emit(state.copyWith(isLoading: true));
@@ -24,7 +22,7 @@ class UserBloc extends Cubit<UserBlocUiState> {
       return;
     }
     final remoteUsers = await userRepository.getUsers();
-    await hiveManager.save(USER_BOX, remoteUsers);
+    await hiveManager.save<UserModel>(USER_BOX, remoteUsers);
     emit(state.copyWith(users: remoteUsers, isLoading: false));
   }
 

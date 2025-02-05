@@ -3,9 +3,19 @@ import 'package:ceiba_app/ui/pages/user/widgets/user_page_element.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class UserPage extends StatelessWidget {
+class UserPage extends StatefulWidget {
   const UserPage({super.key});
 
+  @override
+  State<UserPage> createState() => _UserPageState();
+}
+
+class _UserPageState extends State<UserPage> {
+  @override
+  void initState() {
+   context.read<UserBloc>().onInit();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

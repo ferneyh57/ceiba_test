@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
           create: (BuildContext context) => locator<PostBloc>(),
         ),
         BlocProvider<UserBloc>(
-          create: (BuildContext context) => locator<UserBloc>()..onInit(),
+          create: (BuildContext context) => locator<UserBloc>()
         ),
       ],
       child: MaterialApp(

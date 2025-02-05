@@ -1,4 +1,5 @@
 import 'package:ceiba_app/domain/model/user/user_model.dart';
+import 'package:ceiba_app/ui/pages/post/post_page.dart';
 import 'package:flutter/material.dart';
 
 class UserPageElement extends StatelessWidget {
@@ -41,7 +42,16 @@ class UserPageElement extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PostPage(
+                          userModel: user
+                        ),
+                      ),
+                    );
+                  },
                   child: Text(
                     "VER PUBLICACIONES",
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(

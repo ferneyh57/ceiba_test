@@ -1,5 +1,6 @@
+
 class PostQuery {
-  final String? userId;
+  final int? userId;
   PostQuery({this.userId});
   
   Map<String, dynamic> toJson() {

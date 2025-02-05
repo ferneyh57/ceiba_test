@@ -1,10 +1,11 @@
-import 'package:hive_flutter/hive_flutter.dart';
+
+import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'post_model.g.dart';
 
 @JsonSerializable()
 @HiveType(typeId: 1)
-class PostModel extends HiveObject {
+class PostModel {
   @HiveField(0)
   final int? id;
 
