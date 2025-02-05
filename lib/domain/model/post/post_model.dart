@@ -6,10 +6,10 @@ part 'post_model.g.dart';
 @HiveType(typeId: 1)
 class PostModel extends HiveObject {
   @HiveField(0)
-  final String? id;
+  final int? id;
 
   @HiveField(1)
-  final String? userId;
+  final int? userId;
 
   @HiveField(2)
   final String? title;

@@ -4,7 +4,7 @@ import 'package:ceiba_app/ui/utils/constants.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class HiveManager {
-  late Box _mainBox;
+   Box? _mainBox;
 
   HiveManager() {
     initHive();
@@ -18,22 +18,22 @@ class HiveManager {
   }
 
   Future<void> save<T>(String boxName, List<T> items) async {
-    await _mainBox.put(boxName, items);
+    return _mainBox?.put(boxName, items);
   }
 
   T? get<T>(String boxName) {
-    return _mainBox.get(boxName) as T?;
+    return _mainBox?.get(boxName) as T?;
   }
 
   List<T>? getMany<T>(String boxName) {
-    return _mainBox.get(boxName)?.cast<T>();
+    return _mainBox?.get(boxName)?.cast<T>();
   }
 
   Future<void> delete<T>(String boxName) async {
-    await _mainBox.delete(boxName);
+    await _mainBox?.delete(boxName);
   }
 
   Future<void> close() async {
-    await _mainBox.close();
+    await _mainBox?.close();
   }
 }

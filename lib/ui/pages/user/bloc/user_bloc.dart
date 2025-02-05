@@ -12,11 +12,11 @@ class UserBloc extends Cubit<UserBlocUiState> {
   UserBloc({
     required this.hiveManager,
     required this.userRepository,
-  }) : super(UserBlocUiState()) {
-    _onInit();
+  }) : super(const UserBlocUiState()) {
+  //  onInit();
   }
 
-  _onInit() async {
+  onInit() async {
     emit(state.copyWith(isLoading: true));
     final localUsers = hiveManager.getMany<UserModel>(USER_BOX);
     if (localUsers?.isNotEmpty == true) {
@@ -24,7 +24,18 @@ class UserBloc extends Cubit<UserBlocUiState> {
       return;
     }
     final remoteUsers = await userRepository.getUsers();
-    hiveManager.save(USER_BOX, remoteUsers);
+    await hiveManager.save(USER_BOX, remoteUsers);
     emit(state.copyWith(users: remoteUsers, isLoading: false));
+  }
+
+  List<UserModel> get filteredUsers {
+    if (state.searchQuery.isEmpty) return state.users;
+    return state.users
+        .where((element) => element.name?.toLowerCase().contains(state.searchQuery.toLowerCase()) ?? false)
+        .toList();
+  }
+
+  void onSearch(String query) {
+    emit(state.copyWith(searchQuery: query));
   }
 }

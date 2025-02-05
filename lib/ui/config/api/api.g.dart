@@ -13,9 +13,7 @@ class _ApiClient implements ApiClient {
     this._dio, {
     this.baseUrl,
     this.errorLogger,
-  }) {
-    baseUrl ??= 'https://jsonplaceholder.typicode.com';
-  }
+  });
 
   final Dio _dio;
 
@@ -24,12 +22,12 @@ class _ApiClient implements ApiClient {
   final dynamic errorLogger;
 
   @override
-  Future<List<PostModel>> getUsers() async {
+  Future<List<UserModel>> getUsers() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<List<PostModel>>(Options(
+    final _options = _setStreamType<List<UserModel>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -46,10 +44,10 @@ class _ApiClient implements ApiClient {
           baseUrl,
         )));
     final _result = await _dio.fetch<List<dynamic>>(_options);
-    late List<PostModel> _value;
+    late List<UserModel> _value;
     try {
       _value = _result.data!
-          .map((dynamic i) => PostModel.fromJson(i as Map<String, dynamic>))
+          .map((dynamic i) => UserModel.fromJson(i as Map<String, dynamic>))
           .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
@@ -59,44 +57,10 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<List<PostModel>> getPosts() async {
+  Future<List<PostModel>> getPosts(PostQuery query) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<List<PostModel>>(Options(
-      method: 'GET',
-      headers: _headers,
-      extra: _extra,
-    )
-        .compose(
-          _dio.options,
-          '/posts',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        )));
-    final _result = await _dio.fetch<List<dynamic>>(_options);
-    late List<PostModel> _value;
-    try {
-      _value = _result.data!
-          .map((dynamic i) => PostModel.fromJson(i as Map<String, dynamic>))
-          .toList();
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
-      rethrow;
-    }
-    return _value;
-  }
-
-  @override
-  Future<List<PostModel>> getUserPost(int userId) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'userId': userId};
+    queryParameters.addAll(query.toJson());
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<List<PostModel>>(Options(
