@@ -37,19 +37,33 @@ class _PostPageState extends State<PostPage> {
             child: Column(
               children: [
                 Text(
-                  "Post from ${widget.userModel.name}",
+                  "${widget.userModel.name}",
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       color: Theme.of(context).colorScheme.primary, fontWeight: FontWeight.bold, fontSize: 18),
                 ),
-                Text(
-                  "Phone: ${widget.userModel.phone}",
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: Theme.of(context).colorScheme.primary, fontWeight: FontWeight.bold, fontSize: 18),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(Icons.phone),
+                    const SizedBox(width: 4),
+                    Text(
+                      "${widget.userModel.phone}",
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          color: Theme.of(context).colorScheme.primary, fontWeight: FontWeight.bold, fontSize: 18),
+                    ),
+                  ],
                 ),
-                Text(
-                  "Email: ${widget.userModel.email}",
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: Theme.of(context).colorScheme.primary, fontWeight: FontWeight.bold, fontSize: 18),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(Icons.email),
+                    const SizedBox(width: 4),
+                    Text(
+                      "${widget.userModel.email}",
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          color: Theme.of(context).colorScheme.primary, fontWeight: FontWeight.bold, fontSize: 18),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 24),
                 if (posts.isEmpty)

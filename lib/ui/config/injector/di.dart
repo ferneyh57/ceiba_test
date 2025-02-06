@@ -2,7 +2,7 @@ import 'package:ceiba_app/data/datasource/post_data_source.dart';
 import 'package:ceiba_app/data/datasource/user_data_source.dart';
 import 'package:ceiba_app/data/repository/post_repository.dart';
 import 'package:ceiba_app/data/repository/user_repository.dart';
-import 'package:ceiba_app/ui/config/api/api.dart';
+import 'package:ceiba_app/data/api/api.dart';
 import 'package:ceiba_app/ui/pages/post/bloc/post_bloc.dart';
 import 'package:ceiba_app/ui/pages/user/bloc/user_bloc.dart';
 import 'package:ceiba_app/ui/utils/constants.dart';

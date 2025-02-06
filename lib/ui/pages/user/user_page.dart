@@ -37,6 +37,9 @@ class _UserPageState extends State<UserPage> {
             child: Column(
               children: [
                 TextField(
+                  decoration: const InputDecoration(
+                    labelText: 'Buscar usuario',
+                  ),
                   onChanged: (value) {
                     _debouncer.run(() {
                       userBloc.onSearch(value);

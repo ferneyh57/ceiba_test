@@ -1,5 +1,5 @@
 import 'package:ceiba_app/domain/model/user/user_model.dart';
-import 'package:ceiba_app/ui/config/api/api.dart';
+import 'package:ceiba_app/data/api/api.dart';
 import 'package:flutter/foundation.dart';
 
 abstract class UserDataSource {

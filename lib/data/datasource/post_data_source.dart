@@ -1,5 +1,5 @@
 import 'package:ceiba_app/domain/model/post/post_model.dart';
-import 'package:ceiba_app/ui/config/api/api.dart';
+import 'package:ceiba_app/data/api/api.dart';
 import 'package:ceiba_app/ui/utils/query/post_query.dart';
 import 'package:flutter/foundation.dart';
 
